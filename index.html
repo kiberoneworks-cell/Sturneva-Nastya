@@ -2,677 +2,674 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Настя Штурнева | Портфолио</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>КодоМания · Кликер для юных программистов</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            user-select: none;
         }
 
         body {
-            background: linear-gradient(145deg, #f9faff 0%, #f0f2fa 100%);
-            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', 'Poppins', sans-serif;
-            color: #1a1e2b;
-            line-height: 1.4;
-            scroll-behavior: smooth;
-        }
-
-        /* кастомный скролл */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #e2e6f0;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #8f9bb3;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #6c7a9e;
-        }
-
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 2rem 1.8rem;
-        }
-
-        /* header / hero */
-        .hero {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #0b1120 0%, #111827 100%);
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, 'Poppins', sans-serif;
             display: flex;
-            flex-wrap: wrap;
+            justify-content: center;
             align-items: center;
-            justify-content: space-between;
-            gap: 2rem;
-            margin-bottom: 3.5rem;
-            background: rgba(255,255,255,0.6);
-            backdrop-filter: blur(4px);
-            border-radius: 3rem;
-            padding: 2rem 2rem;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.02), 0 2px 6px rgba(0,0,0,0.05);
+            padding: 1.5rem;
         }
 
-        .hero-info {
+        /* главная карточка игры */
+        .game-container {
+            max-width: 650px;
+            width: 100%;
+            background: rgba(18, 25, 45, 0.75);
+            backdrop-filter: blur(12px);
+            border-radius: 3rem;
+            padding: 1.8rem;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.5), 0 0 0 1px rgba(76, 130, 245, 0.2);
+            transition: all 0.2s;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        /* шапка с ресурсами */
+        .stats-panel {
+            background: #0f172ad9;
+            border-radius: 2rem;
+            padding: 1rem 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            border: 1px solid #2d3a5e;
+            box-shadow: 0 8px 14px rgba(0,0,0,0.2);
+        }
+
+        .stat-card {
+            background: #02061770;
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+        }
+
+        .stat-emoji {
+            font-size: 1.8rem;
+        }
+
+        .stat-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #94a3b8;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #facc15;
+            line-height: 1;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .click-area {
+            background: radial-gradient(circle at 30% 20%, #1e293b, #0f172a);
+            border-radius: 2.5rem;
+            padding: 2rem 1rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            cursor: pointer;
+            transition: transform 0.07s linear;
+            border: 2px solid #3b82f6;
+            box-shadow: 0 12px 0 #0c4a6e;
+        }
+
+        .click-area:active {
+            transform: translateY(6px);
+            box-shadow: 0 5px 0 #0c4a6e;
+        }
+
+        .code-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #2563eb, #4f46e5);
+            font-size: 3.5rem;
+            padding: 1rem 2rem;
+            border-radius: 3rem;
+            font-weight: bold;
+            color: white;
+            letter-spacing: 2px;
+            box-shadow: 0 8px 20px rgba(37,99,235,0.4);
+        }
+
+        .click-title {
+            font-size: 1.2rem;
+            color: #cbd5e6;
+            margin-top: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* магазин улучшений */
+        .shop-section {
+            margin-top: 1rem;
+        }
+
+        .shop-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #e2e8f0;
+            margin-bottom: 1rem;
+            border-left: 5px solid #facc15;
+            padding-left: 1rem;
+        }
+
+        .upgrades-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .upgrade-card {
+            background: #1e293bbb;
+            border-radius: 1.5rem;
+            padding: 0.8rem 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            backdrop-filter: blur(4px);
+            border: 1px solid #334155;
+            transition: 0.1s;
+        }
+
+        .upgrade-info {
             flex: 2;
         }
 
-        .badge {
-            background: #6c5ce7;
-            color: white;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            padding: 0.3rem 1rem;
-            border-radius: 40px;
-            display: inline-block;
-            margin-bottom: 1rem;
-            box-shadow: 0 2px 6px rgba(108,92,231,0.3);
-        }
-
-        .hero-info h1 {
-            font-size: 3.2rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #1E2A5E, #4b3b9e);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.5rem;
-        }
-
-        .age-highlight {
-            font-size: 1.3rem;
-            font-weight: 500;
-            color: #4c5b7a;
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .school {
-            background: #e8ecf9;
-            padding: 0.3rem 1rem;
-            border-radius: 40px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: #2d3a6e;
-        }
-
-        .desc {
-            font-size: 1.1rem;
-            color: #2c3a5e;
-            max-width: 550px;
-            margin-top: 1rem;
-            line-height: 1.5;
-            border-left: 3px solid #6c5ce7;
-            padding-left: 1.2rem;
-        }
-
-        .hero-avatar {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-        }
-
-        .avatar-circle {
-            width: 180px;
-            height: 180px;
-            background: linear-gradient(125deg, #a594fd, #6c5ce7);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 20px 35px -10px rgba(108,92,231,0.4);
-            transition: transform 0.2s ease;
-        }
-        .avatar-circle:hover {
-            transform: scale(1.02);
-        }
-        .avatar-initials {
-            font-size: 4.2rem;
+        .upgrade-name {
             font-weight: 700;
-            color: white;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            letter-spacing: 2px;
-        }
-
-        /* секция проектов */
-        .section-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1.8rem;
+            font-size: 1.2rem;
+            color: #f1f5f9;
             display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .section-title span {
-            background: #1a1e2b;
-            color: white;
-            font-size: 1rem;
-            padding: 4px 12px;
-            border-radius: 60px;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .project-card {
-            background: white;
-            border-radius: 2rem;
-            padding: 1.5rem;
-            transition: all 0.25s ease;
-            box-shadow: 0 12px 22px -12px rgba(0,0,0,0.08);
-            border: 1px solid rgba(108,92,231,0.15);
-            cursor: pointer;
-        }
-        .project-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 25px 30px -12px rgba(0,0,0,0.2);
-            border-color: #c7bcff;
-        }
-
-        .project-icon {
-            font-size: 2.4rem;
-            margin-bottom: 0.8rem;
-        }
-        .project-title {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: #1e293b;
-        }
-        .project-tech {
-            display: inline-block;
-            background: #eef2ff;
-            padding: 0.2rem 0.8rem;
-            border-radius: 30px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            color: #4f46e5;
-            margin-bottom: 1rem;
-        }
-        .project-desc {
-            color: #334155;
-            margin: 0.8rem 0 1rem;
-            line-height: 1.45;
-        }
-        .project-link {
-            display: inline-flex;
             align-items: center;
             gap: 8px;
-            font-weight: 600;
-            color: #6c5ce7;
-            text-decoration: none;
-            font-size: 0.9rem;
-            border-bottom: 1.5px dotted #c7bcff;
-            transition: 0.2s;
-        }
-        .project-link:hover {
-            gap: 12px;
-            color: #3a2c9e;
         }
 
-        /* доп секция о себе / навыки */
-        .about-more {
-            background: linear-gradient(115deg, #ffffff 0%, #f8f9fe 100%);
-            border-radius: 2rem;
-            padding: 2rem;
-            margin-top: 2rem;
-            box-shadow: 0 8px 18px rgba(0,0,0,0.03);
-            border: 1px solid #e9ecf5;
+        .upgrade-desc {
+            font-size: 0.75rem;
+            color: #94a3b8;
         }
-        .about-more h3 {
-            font-size: 1.6rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
+
+        .upgrade-stats {
+            text-align: right;
         }
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin: 1.2rem 0 1rem;
-        }
-        .skill {
-            background: #e9eefc;
-            padding: 6px 16px;
+
+        .upgrade-power {
+            background: #2d3a5e;
+            padding: 4px 10px;
             border-radius: 40px;
-            font-weight: 500;
-            font-size: 0.85rem;
-            color: #2d3a6e;
+            font-size: 0.7rem;
+            font-weight: bold;
+            color: #facc15;
         }
-        .quote {
-            font-style: italic;
-            border-left: 4px solid #6c5ce7;
-            padding-left: 1rem;
-            margin-top: 1.4rem;
-            color: #3f4a6b;
+
+        .upgrade-cost {
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: #facc15;
+            margin-top: 5px;
+        }
+
+        .buy-btn {
+            background: #3b82f6;
+            border: none;
+            color: white;
+            font-weight: bold;
+            padding: 10px 18px;
+            border-radius: 3rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: 0.1s ease;
+            box-shadow: 0 4px 0 #1e3a8a;
+        }
+
+        .buy-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 1px 0 #1e3a8a;
+        }
+
+        .buy-btn.disabled {
+            background: #475569;
+            box-shadow: none;
+            transform: none;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .level-badge {
+            font-size: 0.7rem;
+            background: #facc1522;
+            padding: 2px 8px;
+            border-radius: 60px;
+            color: #facc15;
+        }
+
+        .reset-btn {
+            background: rgba(100, 116, 139, 0.3);
+            border: 1px solid #f87171;
+            color: #fca5a5;
+            padding: 6px 14px;
+            border-radius: 3rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            width: 100%;
+            transition: 0.1s;
+        }
+
+        .reset-btn:active {
+            background: #7f1a1a40;
         }
 
         footer {
+            font-size: 0.7rem;
             text-align: center;
-            margin-top: 3rem;
-            padding: 1.5rem 0;
-            color: #6a6f8d;
-            font-size: 0.85rem;
-            border-top: 1px solid #e2e6f0;
+            margin-top: 1.5rem;
+            color: #5b6e8c;
         }
 
-        button {
-            background: none;
-            border: none;
-        }
-
-        @media (max-width: 750px) {
-            .hero {
-                flex-direction: column;
-                text-align: center;
+        @media (max-width: 550px) {
+            .game-container {
+                padding: 1rem;
             }
-            .hero-info h1 {
-                font-size: 2.4rem;
+            .stat-value {
+                font-size: 1.4rem;
             }
-            .desc {
-                border-left: none;
-                padding-left: 0;
-                text-align: center;
-                margin-left: auto;
-                margin-right: auto;
-            }
-            .age-highlight {
-                justify-content: center;
-            }
-            .section-title {
-                justify-content: center;
-            }
-        }
-
-        /* анимация появления */
-        .fade-up {
-            animation: fadeUp 0.5s ease-out forwards;
-        }
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(15px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            .code-btn {
+                font-size: 2.5rem;
+                padding: 0.6rem 1.2rem;
             }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <!-- Hero секция / Обо мне -->
-    <div class="hero fade-up">
-        <div class="hero-info">
-            <div class="badge">✨ юный разработчик</div>
-            <h1>Штурнева Настя</h1>
-            <div class="age-highlight">
-                <span>🎂 15 лет</span>
-                <span class="school">🎓 KiberOne — школа программирования</span>
-            </div>
-            <div class="desc">
-                Создаю сайты и интерактивные приложения с душой. Учусь полный стек: от верстки до баз данных. 
-                Люблю экспериментировать с дизайном и решать логические задачи. В KiberOne прокачиваю навыки 
-                разработки и командной работы.
+<div class="game-container">
+    <!-- панель ресурсов -->
+    <div class="stats-panel">
+        <div class="stat-card">
+            <div class="stat-emoji">💻</div>
+            <div class="stat-info">
+                <div class="stat-label">КОД-БАЛЛЫ</div>
+                <div class="stat-value" id="scoreValue">0</div>
             </div>
         </div>
-        <div class="hero-avatar">
-            <div class="avatar-circle">
-                <div class="avatar-initials">НШ</div>
+        <div class="stat-card">
+            <div class="stat-emoji">⚡</div>
+            <div class="stat-info">
+                <div class="stat-label">МОЩНОСТЬ/КЛИК</div>
+                <div class="stat-value" id="clickPowerValue">1</div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-emoji">🤖</div>
+            <div class="stat-info">
+                <div class="stat-label">ПРОГРАММИСТЫ</div>
+                <div class="stat-value" id="autoValue">0</div>
             </div>
         </div>
     </div>
 
-    <!-- Список проектов -->
-    <div class="section-title">
-        📁 Мои проекты <span>портфолио</span>
+    <!-- кликабельная зона -->
+    <div class="click-area" id="clickZone">
+        <div class="code-btn">
+            &lt;/&gt; CODE
+        </div>
+        <div class="click-title">напиши строчку кода → +<span id="clickHint">1</span> код-баллов</div>
     </div>
 
-    <div class="projects-grid" id="projectsContainer">
-        <!-- проекты будут отрисованы через JS, но для надежности дублируем структуру через js -->
+    <!-- магазин апгрейдов -->
+    <div class="shop-section">
+        <div class="shop-title">
+            <span>📈 ПРОКАЧКА СКИЛЛОВ</span>
+        </div>
+        <div class="upgrades-grid" id="upgradesList"></div>
     </div>
 
-    <!-- Дополнительная информация обо мне + навыки -->
-    <div class="about-more fade-up">
-        <h3>✨ чуть больше обо мне</h3>
-        <div class="skills">
-            <span class="skill">HTML5 & CSS3</span>
-            <span class="skill">JavaScript (ES6+)</span>
-            <span class="skill">React.js (базовый)</span>
-            <span class="skill">Python / Flask</span>
-            <span class="skill">Git & Github</span>
-            <span class="skill">Figma</span>
-            <span class="skill">Адаптивная верстка</span>
-        </div>
-        <p>🎯 В планах: изучить TypeScript, создать собственный pet-проект с ИИ, участвовать в хакатонах. 
-        В свободное время решаю задачи на Codewars, читаю про UX/UI и веду небольшой блог в Telegram про веб-разработку.</p>
-        <div class="quote">
-            💬 «Код — это инструмент, а творчество — двигатель. В KiberOne я нашла единомышленников и вдохновение, чтобы расти каждый день»
-        </div>
-    </div>
-    <footer>
-        © 2025 Штурнева Настя — портфолио ученицы KiberOne. Все проекты учебные и реальные.
-    </footer>
+    <button class="reset-btn" id="resetGameBtn">⟳ СБРОС ПРОГРЕССА (начать заново)</button>
+    <footer>⚡ Кликай по коду, покупай улучшения и стань гуру KiberOne!</footer>
 </div>
 
 <script>
-    // данные проектов (список)
-    const projectsData = [
+    // ---------- ИГРОВОЙ ДВИЖОК "КодоМания" ----------
+    // Данные улучшений (id, название, описание, базовая стоимость, прирост клика или пассив)
+    const upgradesData = [
         {
-            id: 1,
-            title: "Кибер-визитка",
-            tech: "HTML, CSS, JS",
-            description: "Интерактивная визитка-лендинг с анимацией и модальным окном. Первая серьезная работа в KiberOne.",
-            icon: "🧩",
-            demoLink: "#",
-            codeLink: "#"
+            id: "betterIdeas",
+            name: "📖 Лучшие алгоритмы",
+            desc: "Увеличивает код-баллы за клик на +1",
+            baseCost: 15,
+            type: "click",
+            power: 1,
+            level: 0,
+            maxLevel: 20,
+            costMultiplier: 1.25
         },
         {
-            id: 2,
-            title: "Todo list на ваниле",
-            tech: "JavaScript, LocalStorage",
-            description: "Менеджер задач с возможностью добавлять, удалять, отмечать выполненные. Данные сохраняются в браузере.",
-            icon: "✅",
-            demoLink: "#",
-            codeLink: "#"
+            id: "coffeeBoost",
+            name: "☕ Кофеиновая оптимизация",
+            desc: "Еще +2 к силе клика (мощный апгрейд)",
+            baseCost: 60,
+            type: "click",
+            power: 2,
+            level: 0,
+            maxLevel: 15,
+            costMultiplier: 1.3
         },
         {
-            id: 3,
-            title: "Калькулятор ИИ-идей",
-            tech: "React + хуки",
-            description: "Прототип генератора случайных идей для проектов с забавными описаниями. Работа с состоянием.",
-            icon: "🤖",
-            demoLink: "#",
-            codeLink: "#"
+            id: "juniorDev",
+            name: "👩‍💻 Стажёр-программист",
+            desc: "Автоматически генерирует 2 код-балла/сек",
+            baseCost: 40,
+            type: "auto",
+            power: 2,
+            level: 0,
+            maxLevel: 25,
+            costMultiplier: 1.2
         },
         {
-            id: 4,
-            title: "Погодный виджет",
-            tech: "API, Fetch, Async",
-            description: "Приложение с определением погоды по городу через OpenWeatherMap, динамическая смена иконок.",
-            icon: "⛅",
-            demoLink: "#",
-            codeLink: "#"
-        },
-        {
-            id: 5,
-            title: "Сайт-портфолио (этот)",
-            tech: "HTML/CSS/JS, Grid",
-            description: "Мое персональное портфолио, где собраны проекты. Адаптивный дизайн и современный UI.",
-            icon: "🎨",
-            demoLink: "#",
-            codeLink: "#"
-        },
-        {
-            id: 6,
-            title: "Mini Quiz: KiberOne",
-            tech: "JS, DOM Events",
-            description: "Викторина из 5 вопросов об IT и школе KiberOne, подсчет очков и отображение результата.",
-            icon: "📚",
-            demoLink: "#",
-            codeLink: "#"
+            id: "seniorArchitect",
+            name: "🧙‍♂️ Сеньор-архитектор",
+            desc: "Пассивный доход +8 код-баллов/сек",
+            baseCost: 180,
+            type: "auto",
+            power: 8,
+            level: 0,
+            maxLevel: 15,
+            costMultiplier: 1.35
         }
     ];
 
-    // Функция для рендера проектов в сетку
-    function renderProjects() {
-        const container = document.getElementById('projectsContainer');
+    // Состояние игры
+    let gameState = {
+        score: 0,           // текущие код-баллы
+        clickBasePower: 1,  // базовая сила клика (старт 1)
+        clickBonus: 0,      // бонус от улучшений клика
+        autoIncome: 0,      // пассивный доход в секунду
+        upgrades: {}        // храним уровни каждого улучшения { id: level }
+    };
+
+    // Инициализация уровней
+    function initUpgrades() {
+        upgradesData.forEach(up => {
+            gameState.upgrades[up.id] = 0;
+        });
+        // пересчитаем бонусы и пассивки
+        recalcAllBonuses();
+    }
+
+    // пересчёт клик бонуса и автодохода на основе текущих уровней
+    function recalcAllBonuses() {
+        let newClickBonus = 0;
+        let newAutoIncome = 0;
+
+        upgradesData.forEach(up => {
+            const level = gameState.upgrades[up.id];
+            if (level === undefined) return;
+            const totalPower = up.power * level;
+            if (up.type === "click") {
+                newClickBonus += totalPower;
+            } else if (up.type === "auto") {
+                newAutoIncome += totalPower;
+            }
+        });
+
+        gameState.clickBonus = newClickBonus;
+        gameState.autoIncome = newAutoIncome;
+        // базовая сила клика 1 + бонус
+        updateUIStats();
+    }
+
+    // получить полную силу клика
+    function getTotalClickPower() {
+        return gameState.clickBasePower + gameState.clickBonus;
+    }
+
+    // обработка клика
+    function handleClick() {
+        const power = getTotalClickPower();
+        addScore(power);
+        // анимация на клик-зоне
+        const clickDiv = document.getElementById('clickZone');
+        clickDiv.style.transform = 'scale(0.98)';
+        setTimeout(() => { if(clickDiv) clickDiv.style.transform = ''; }, 100);
+        // визуальный фидбек (вспышка)
+        const scoreSpan = document.getElementById('scoreValue');
+        if(scoreSpan) {
+            scoreSpan.style.transform = 'scale(1.1)';
+            setTimeout(() => { if(scoreSpan) scoreSpan.style.transform = ''; }, 150);
+        }
+    }
+
+    function addScore(amount) {
+        gameState.score += amount;
+        if(gameState.score < 0) gameState.score = 0;
+        updateUIStats();
+        checkUpgradeButtonsState(); // обновляем активность кнопок
+        saveToLocalStorage();
+    }
+
+    // списать баллы (если хватает)
+    function spendScore(cost) {
+        if (gameState.score >= cost) {
+            gameState.score -= cost;
+            updateUIStats();
+            saveToLocalStorage();
+            return true;
+        }
+        return false;
+    }
+
+    // покупка улучшения
+    function buyUpgrade(upgradeId) {
+        const upgrade = upgradesData.find(u => u.id === upgradeId);
+        if (!upgrade) return false;
+        const currentLevel = gameState.upgrades[upgradeId];
+        if (currentLevel >= upgrade.maxLevel) {
+            showToast("🏆 Максимальный уровень достигнут!");
+            return false;
+        }
+        const cost = getUpgradeCost(upgrade);
+        if (gameState.score >= cost) {
+            // списываем
+            gameState.score -= cost;
+            gameState.upgrades[upgradeId] = currentLevel + 1;
+            // пересчет бонусов
+            recalcAllBonuses();
+            updateUIStats();
+            renderUpgradesList();    // перерисовываем магазин (цены изменятся)
+            saveToLocalStorage();
+            // приятный эффект
+            showToast(`✨ ${upgrade.name} улучшен до уровня ${gameState.upgrades[upgradeId]} !`);
+            return true;
+        } else {
+            showToast("❌ Не хватает код-баллов!");
+            return false;
+        }
+    }
+
+    // рассчитать стоимость улучшения с учётом уровня и множителя
+    function getUpgradeCost(upgrade) {
+        const level = gameState.upgrades[upgrade.id];
+        let cost = upgrade.baseCost;
+        for(let i = 0; i < level; i++) {
+            cost = Math.floor(cost * upgrade.costMultiplier);
+        }
+        return Math.max(1, cost);
+    }
+
+    // обновление UI: счёт, сила клика, авто-доход, подсказка клика
+    function updateUIStats() {
+        document.getElementById('scoreValue').innerText = Math.floor(gameState.score);
+        const totalClick = getTotalClickPower();
+        document.getElementById('clickPowerValue').innerText = totalClick;
+        document.getElementById('autoValue').innerText = gameState.autoIncome;
+        document.getElementById('clickHint').innerText = totalClick;
+    }
+
+    // отрисовка всех карточек улучшений
+    function renderUpgradesList() {
+        const container = document.getElementById('upgradesList');
         if (!container) return;
-
-        container.innerHTML = ''; // очищаем
-
-        projectsData.forEach(project => {
+        container.innerHTML = '';
+        upgradesData.forEach(up => {
+            const level = gameState.upgrades[up.id];
+            const cost = getUpgradeCost(up);
+            const maxed = level >= up.maxLevel;
+            const canAfford = gameState.score >= cost && !maxed;
             const card = document.createElement('div');
-            card.className = 'project-card fade-up';
-            // анимация появляется плавно, но добавим небольшой стиль задержки через style?
-            card.style.animationDelay = `${Math.random() * 0.1}s`; 
-            
-            // внутреннее наполнение
+            card.className = 'upgrade-card';
             card.innerHTML = `
-                <div class="project-icon">${project.icon}</div>
-                <div class="project-title">${escapeHtml(project.title)}</div>
-                <div class="project-tech">${escapeHtml(project.tech)}</div>
-                <div class="project-desc">${escapeHtml(project.description)}</div>
-                <div style="display: flex; gap: 1rem; margin-top: 12px;">
-                    <a href="${project.demoLink}" class="project-link" target="_blank">🔗 Демо →</a>
-                    <a href="${project.codeLink}" class="project-link" target="_blank">📂 Код →</a>
+                <div class="upgrade-info">
+                    <div class="upgrade-name">
+                        ${up.name} 
+                        <span class="level-badge">ур. ${level}/${up.maxLevel}</span>
+                    </div>
+                    <div class="upgrade-desc">${up.desc} ${up.type === 'click' ? `(+${up.power} к клику/ур.)` : `(+${up.power} пассив/сек)`}</div>
+                </div>
+                <div class="upgrade-stats">
+                    <div class="upgrade-power">⚡ сила: +${up.power * level}</div>
+                    <div class="upgrade-cost">💰 ${cost}</div>
                 </div>
             `;
-
-            // Добавим событие клика по карточке (показывать больше информации в alert для интерактива)
-            card.addEventListener('click', (e) => {
-                // если клик был именно по ссылке — не перебиваем
-                if(e.target.tagName === 'A' || e.target.closest('a')) return;
-                alert(`✨ Проект: ${project.title}\nТехнологии: ${project.tech}\nОписание: ${project.description}\nСпасибо за интерес! 🚀`);
+            const buyButton = document.createElement('button');
+            buyButton.innerText = maxed ? "МАКС" : "КУПИТЬ";
+            buyButton.classList.add('buy-btn');
+            if (maxed) {
+                buyButton.classList.add('disabled');
+                buyButton.disabled = true;
+            } else if (!canAfford) {
+                buyButton.classList.add('disabled');
+                buyButton.disabled = true;
+            } else {
+                buyButton.disabled = false;
+            }
+            buyButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (!maxed && canAfford) {
+                    buyUpgrade(up.id);
+                } else if (!canAfford && !maxed) {
+                    showToast("🧠 Не хватает код-баллов! Кликай больше!");
+                }
             });
+            card.appendChild(buyButton);
             container.appendChild(card);
         });
+        // дополнительно обновим состояние кнопок после любой покупки (но в buyUpgrade уже вызывается renderUpgradesList)
     }
 
-    // маленькая защита от XSS
-    function escapeHtml(str) {
-        return str.replace(/[&<>]/g, function(m) {
-            if (m === '&') return '&amp;';
-            if (m === '<') return '&lt;';
-            if (m === '>') return '&gt;';
-            return m;
-        }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
-            return c;
-        });
+    // Проверка и обновление активности кнопок при изменении счёта (без полной перерисовки - но перерисуем лучше)
+    function checkUpgradeButtonsState() {
+        // чтобы кнопки перерисовывались динамически при изменении счёта (вызывается при addScore)
+        renderUpgradesList();
     }
 
-    // Дополнительный JS: плавный скролл к секциям, счетчик посещений / эффекты
-    // Небольшая интерактивная подпись в консоль (дружелюбно)
-    console.log("%c✨ Портфолио Насти Штурневой | KiberOne student ✨", "color: #6c5ce7; font-size: 16px; font-weight: bold;");
-    console.log("Проекты загружены, кликни на карточку для быстрого просмотра описания :)");
+    // сброс игры
+    function resetGame() {
+        if(confirm("⚠️ Сбросить весь прогресс? Все улучшения и код-баллы обнулятся.")) {
+            gameState.score = 0;
+            gameState.clickBonus = 0;
+            gameState.autoIncome = 0;
+            upgradesData.forEach(up => {
+                gameState.upgrades[up.id] = 0;
+            });
+            recalcAllBonuses();
+            updateUIStats();
+            renderUpgradesList();
+            saveToLocalStorage();
+            showToast("🔄 Прогресс сброшен. Начинай кликать заново!");
+        }
+    }
 
-    // Добавим возможность фильтрации проектов по технологии? (необязательно, но сделаем маленький ui с кнопкой - круто)
-    // Для дополнительного wow-эффекта добавим простую кнопку "Показать навыки" или выделить проекты.
-    // Но по заданию просто портфолио + описание + проекты. Сделаем еще динамическое приветствие.
-    
-    // Добавим в хедер небольшую рандомную цитату при загрузке? но можно и так.
-    // Создадим элемент поверх? Но для красоты: динамически обновим заголовок проектов или добавим переключатель "сортировка"
-    // Реализуем простой выпадающий фильтр (не обязательно, но стильно и покажет JS).
-    
-    // Вставлю над сеткой небольшие кнопки для фильтрации проектов (по технологии), это улучшит пользовательский опыт.
-    // Не противоречит ТЗ, только делает портфолио интереснее.
-    const sectionTitleDiv = document.querySelector('.section-title');
-    const filterPanel = document.createElement('div');
-    filterPanel.style.marginBottom = '1.5rem';
-    filterPanel.style.display = 'flex';
-    filterPanel.style.flexWrap = 'wrap';
-    filterPanel.style.gap = '10px';
-    filterPanel.style.alignItems = 'center';
-    filterPanel.style.justifyContent = 'flex-start';
-    
-    const filterLabel = document.createElement('span');
-    filterLabel.innerText = '🔍 Фильтр по технологиям:';
-    filterLabel.style.fontWeight = '500';
-    filterLabel.style.fontSize = '0.85rem';
-    filterLabel.style.color = '#3b4466';
-    
-    const allBtn = document.createElement('button');
-    allBtn.innerText = 'Все';
-    allBtn.className = 'filter-btn';
-    allBtn.style.background = '#6c5ce7';
-    allBtn.style.color = 'white';
-    allBtn.style.border = 'none';
-    allBtn.style.padding = '6px 16px';
-    allBtn.style.borderRadius = '40px';
-    allBtn.style.cursor = 'pointer';
-    allBtn.style.fontWeight = '500';
-    allBtn.style.fontSize = '0.8rem';
-    allBtn.style.transition = '0.2s';
-    
-    const htmlBtn = document.createElement('button');
-    htmlBtn.innerText = 'HTML/CSS';
-    htmlBtn.className = 'filter-btn';
-    htmlBtn.style.background = '#eef2ff';
-    htmlBtn.style.color = '#2d3a6e';
-    htmlBtn.style.border = '1px solid #cdd9ff';
-    htmlBtn.style.padding = '6px 16px';
-    htmlBtn.style.borderRadius = '40px';
-    htmlBtn.style.cursor = 'pointer';
-    htmlBtn.style.fontWeight = '500';
-    
-    const jsBtn = document.createElement('button');
-    jsBtn.innerText = 'JavaScript';
-    jsBtn.style.background = '#eef2ff';
-    jsBtn.style.color = '#2d3a6e';
-    jsBtn.style.border = '1px solid #cdd9ff';
-    jsBtn.style.padding = '6px 16px';
-    jsBtn.style.borderRadius = '40px';
-    jsBtn.style.cursor = 'pointer';
-    jsBtn.style.fontWeight = '500';
-    
-    const reactBtn = document.createElement('button');
-    reactBtn.innerText = 'React / API';
-    reactBtn.style.background = '#eef2ff';
-    reactBtn.style.color = '#2d3a6e';
-    reactBtn.style.border = '1px solid #cdd9ff';
-    reactBtn.style.padding = '6px 16px';
-    reactBtn.style.borderRadius = '40px';
-    reactBtn.style.cursor = 'pointer';
-    reactBtn.style.fontWeight = '500';
-    
-    const resetStyle = (btns) => {
-        btns.forEach(btn => {
-            if(btn.style) {
-                btn.style.background = '#eef2ff';
-                btn.style.color = '#2d3a6e';
-                btn.style.border = '1px solid #cdd9ff';
-            }
-        });
-    };
-    
-    const highlightActive = (activeBtn) => {
-        activeBtn.style.background = '#6c5ce7';
-        activeBtn.style.color = 'white';
-        activeBtn.style.border = 'none';
-    };
-    
-    function filterProjectsByTech(filterType) {
-        const cards = document.querySelectorAll('.project-card');
-        const projectsArray = Array.from(cards);
-        projectsArray.forEach((card, idx) => {
-            const techSpan = card.querySelector('.project-tech');
-            if(!techSpan) return;
-            const techText = techSpan.innerText.toLowerCase();
-            let match = false;
-            if(filterType === 'all') match = true;
-            else if(filterType === 'html/css' && (techText.includes('html') || techText.includes('css'))) match = true;
-            else if(filterType === 'javascript' && (techText.includes('js') || techText.includes('javascript') || techText.includes('localstorage'))) match = true;
-            else if(filterType === 'react/api' && (techText.includes('react') || techText.includes('api') || techText.includes('fetch'))) match = true;
-            else match = false;
-            
-            card.style.display = match ? 'block' : 'none';
-        });
+    // Сохранение в localStorage
+    function saveToLocalStorage() {
+        const saveData = {
+            score: gameState.score,
+            upgrades: gameState.upgrades,
+            timestamp: Date.now()
+        };
+        localStorage.setItem('kodomania_save', JSON.stringify(saveData));
     }
-    
-    allBtn.addEventListener('click', () => {
-        resetStyle([allBtn, htmlBtn, jsBtn, reactBtn]);
-        highlightActive(allBtn);
-        filterProjectsByTech('all');
-    });
-    htmlBtn.addEventListener('click', () => {
-        resetStyle([allBtn, htmlBtn, jsBtn, reactBtn]);
-        highlightActive(htmlBtn);
-        filterProjectsByTech('html/css');
-    });
-    jsBtn.addEventListener('click', () => {
-        resetStyle([allBtn, htmlBtn, jsBtn, reactBtn]);
-        highlightActive(jsBtn);
-        filterProjectsByTech('javascript');
-    });
-    reactBtn.addEventListener('click', () => {
-        resetStyle([allBtn, htmlBtn, jsBtn, reactBtn]);
-        highlightActive(reactBtn);
-        filterProjectsByTech('react/api');
-    });
-    
-    filterPanel.appendChild(filterLabel);
-    filterPanel.appendChild(allBtn);
-    filterPanel.appendChild(htmlBtn);
-    filterPanel.appendChild(jsBtn);
-    filterPanel.appendChild(reactBtn);
-    
-    // Вставим панель фильтра после заголовка секции и перед сеткой проектов
-    const projectsContainer = document.getElementById('projectsContainer');
-    if(sectionTitleDiv && projectsContainer) {
-        sectionTitleDiv.insertAdjacentElement('afterend', filterPanel);
-    }
-    
-    // Дополнительно эффект на аватарку: меняем текст при клике? просто забава
-    const avatarDiv = document.querySelector('.avatar-circle');
-    if(avatarDiv) {
-        avatarDiv.addEventListener('click', () => {
-            const initialsSpan = document.querySelector('.avatar-initials');
-            if(initialsSpan) {
-                if(initialsSpan.innerText === 'НШ') {
-                    initialsSpan.innerText = '❤️';
-                    setTimeout(() => { initialsSpan.innerText = 'НШ'; }, 1200);
-                } else {
-                    initialsSpan.innerText = 'Настя';
-                    setTimeout(() => { initialsSpan.innerText = 'НШ'; }, 1000);
+
+    function loadFromLocalStorage() {
+        const raw = localStorage.getItem('kodomania_save');
+        if (!raw) return false;
+        try {
+            const data = JSON.parse(raw);
+            if (data.score !== undefined) gameState.score = data.score;
+            if (data.upgrades) {
+                // сливаем сохранённые уровни
+                for (let id in data.upgrades) {
+                    if (gameState.upgrades.hasOwnProperty(id)) {
+                        gameState.upgrades[id] = data.upgrades[id];
+                    }
                 }
             }
-        });
+            recalcAllBonuses();
+            updateUIStats();
+            renderUpgradesList();
+            return true;
+        } catch(e) { console.warn(e); return false; }
     }
-    
-    // Небольшое приветствие в духе "15 лет, полна энергии"
-    const heroDesc = document.querySelector('.desc');
-    if(heroDesc && !heroDesc.innerHTML.includes('KiberOne')) {
-        // уже есть
+
+    // простой тост
+    let toastTimeout = null;
+    function showToast(msg) {
+        let toastEl = document.getElementById('dynamicToast');
+        if(!toastEl) {
+            toastEl = document.createElement('div');
+            toastEl.id = 'dynamicToast';
+            toastEl.style.position = 'fixed';
+            toastEl.style.bottom = '30px';
+            toastEl.style.left = '50%';
+            toastEl.style.transform = 'translateX(-50%)';
+            toastEl.style.backgroundColor = '#0f172ae6';
+            toastEl.style.backdropFilter = 'blur(8px)';
+            toastEl.style.color = '#facc15';
+            toastEl.style.padding = '12px 24px';
+            toastEl.style.borderRadius = '60px';
+            toastEl.style.fontWeight = '600';
+            toastEl.style.fontSize = '0.9rem';
+            toastEl.style.border = '1px solid #facc15';
+            toastEl.style.zIndex = '2000';
+            toastEl.style.whiteSpace = 'nowrap';
+            toastEl.style.fontFamily = 'monospace';
+            document.body.appendChild(toastEl);
+        }
+        toastEl.innerText = msg;
+        toastEl.style.opacity = '1';
+        if(toastTimeout) clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => {
+            if(toastEl) toastEl.style.opacity = '0';
+        }, 1800);
     }
-    
-    // Вызов рендера
-    renderProjects();
-    
-    // после рендера фильтр должен корректно работать для уже созданных карточек, но сначала все карточки видны, задаем фильтр "all" активным по умолчанию.
-    setTimeout(() => {
-        highlightActive(allBtn);
-        filterProjectsByTech('all');
-    }, 30);
-    
-    // Добавим интерактивную модалку приветствия если хотим. Но и так хорошо.
-    // Создадим приветственный toast с информацией о портфолио (можно ненавязчиво)
-    const toast = document.createElement('div');
-    toast.innerText = 'Привет! Я Настя 👋 Кликай на проекты для деталей!';
-    toast.style.position = 'fixed';
-    toast.style.bottom = '20px';
-    toast.style.right = '20px';
-    toast.style.backgroundColor = '#1e293b';
-    toast.style.color = '#f1f5f9';
-    toast.style.padding = '10px 20px';
-    toast.style.borderRadius = '60px';
-    toast.style.fontSize = '0.85rem';
-    toast.style.fontWeight = '500';
-    toast.style.boxShadow = '0 4px 15px rgba(0,0,0,0.2)';
-    toast.style.zIndex = '999';
-    toast.style.opacity = '0';
-    toast.style.transition = 'opacity 0.4s';
-    toast.style.pointerEvents = 'none';
-    document.body.appendChild(toast);
-    setTimeout(() => {
-        toast.style.opacity = '1';
-        setTimeout(() => {
-            toast.style.opacity = '0';
-            setTimeout(() => toast.remove(), 600);
-        }, 2800);
-    }, 500);
+
+    // пассивный доход (интервал)
+    let autoInterval = null;
+    function startAutoIncome() {
+        if(autoInterval) clearInterval(autoInterval);
+        autoInterval = setInterval(() => {
+            if(gameState.autoIncome > 0) {
+                const passiveGain = gameState.autoIncome;
+                addScore(passiveGain);
+                // легкий визуал
+                const autoSpan = document.getElementById('autoValue');
+                if(autoSpan) {
+                    autoSpan.style.transform = 'scale(1.1)';
+                    setTimeout(() => { if(autoSpan) autoSpan.style.transform = ''; }, 200);
+                }
+            }
+        }, 1000);
+    }
+
+    // инициализация событий
+    function bindEvents() {
+        const clickZone = document.getElementById('clickZone');
+        if(clickZone) clickZone.addEventListener('click', handleClick);
+        const resetBtn = document.getElementById('resetGameBtn');
+        if(resetBtn) resetBtn.addEventListener('click', resetGame);
+    }
+
+    // запуск игры
+    function initGame() {
+        initUpgrades();
+        loadFromLocalStorage(); // загрузит сохранения если есть
+        recalcAllBonuses();     // синхронизация
+        updateUIStats();
+        renderUpgradesList();
+        bindEvents();
+        startAutoIncome();
+        // проверяем кнопки при любых изменениях счёта (уже есть внутри addScore вызывает checkUpgradeButtonsState)
+        // добавим также пересчёт кнопок при пассивном доходе (addScore уже вызывает)
+    }
+
+    // Запуск
+    initGame();
 </script>
 </body>
 </html>
