@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Настя Штурнева | Портфолио</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f9faff 0%, #f0f2fa 100%);
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', 'Poppins', sans-serif;
+            color: #1a1e2b;
+            line-height: 1.4;
+            scroll-behavior: smooth;
+        }
+
+        /* кастомный скролл */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e2e6f0;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #8f9bb3;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6c7a9e;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem 1.8rem;
+        }
+
+        /* header / hero */
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            margin-bottom: 3.5rem;
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(4px);
+            border-radius: 3rem;
+            padding: 2rem 2rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.02), 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .hero-info {
+            flex: 2;
+        }
+
+        .badge {
+            background: #6c5ce7;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 6px rgba(108,92,231,0.3);
+        }
+
+        .hero-info h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1E2A5E, #4b3b9e);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .age-highlight {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #4c5b7a;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .school {
+            background: #e8ecf9;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #2d3a6e;
+        }
+
+        .desc {
+            font-size: 1.1rem;
+            color: #2c3a5e;
+            max-width: 550px;
+            margin-top: 1rem;
+            line-height: 1.5;
+            border-left: 3px solid #6c5ce7;
+            padding-left: 1.2rem;
+        }
+
+        .hero-avatar {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .avatar-circle {
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(125deg, #a594fd, #6c5ce7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 35px -10px rgba(108,92,231,0.4);
+            transition: transform 0.2s ease;
+        }
+        .avatar-circle:hover {
+            transform: scale(1.02);
+        }
+        .avatar-initials {
+            font-size: 4.2rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            letter-spacing: 2px;
+        }
+
+        /* секция проектов */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .section-title span {
+            background: #1a1e2b;
+            color: white;
+            font-size: 1rem;
+            padding: 4px 12px;
+            border-radius: 60px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 2rem;
+            padding: 1.5rem;
+            transition: all 0.25s ease;
+            box-shadow: 0 12px 22px -12px rgba(0,0,0,0.08);
+            border: 1px solid rgba(108,92,231,0.15);
+            cursor: pointer;
+        }
+        .project-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 30px -12px rgba(0,0,0,0.2);
+            border-color: #c7bcff;
+        }
+
+        .project-icon {
+            font-size: 2.4rem;
+            margin-bottom: 0.8rem;
+        }
+        .project-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #1e293b;
+        }
+        .project-tech {
+            display: inline-block;
+            background: #eef2ff;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #4f46e5;
+            margin-bottom: 1rem;
+        }
+        .project-desc {
+            color: #334155;
+            margin: 0.8rem 0 1rem;
+            line-height: 1.45;
+        }
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            color: #6c5ce7;
+            text-decoration: none;
+            font-size: 0.9rem;
+            border-bottom: 1.5px dotted #c7bcff;
+            transition: 0.2s;
+        }
+        .project-link:hover {
+            gap: 12px;
+            color: #3a2c9e;
+        }
+
+        /* доп секция о себе / навыки */
+        .about-more {
+            background: linear-gradient(115deg, #ffffff 0%, #f8f9fe 100%);
+            border-radius: 2rem;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.03);
+            border: 1px solid #e9ecf5;
+        }
+        .about-more h3 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 1.2rem 0 1rem;
+        }
+        .skill {
+            background: #e9eefc;
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            color: #2d3a6e;
+        }
+        .quote {
+            font-style: italic;
+            border-left: 4px solid #6c5ce7;
+            padding-left: 1rem;
+            margin-top: 1.4rem;
+            color: #3f4a6b;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 1.5rem 0;
+            color: #6a6f8d;
+            font-size: 0.85rem;
+            border-top: 1px solid #e2e6f0;
+        }
+
+        button {
+            background: none;
+            border: none;
+        }
+
+        @media (max-width: 750px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-info h1 {
+                font-size: 2.4rem;
+            }
+            .desc {
+                border-left: none;
+                padding-left: 0;
+                text-align: center;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .age-highlight {
+                justify-content: center;
+            }
+            .section-title {
+                justify-content: center;
+            }
+        }
+
+        /* анимация появления */
+        .fade-up {
+            animation: fadeUp 0.5s ease-out forwards;
+        }
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Hero секция / Обо мне -->
+    <div class="hero fade-up">
+        <div class="hero-info">
+            <div class="badge">✨ юный разработчик</div>
+            <h1>Штурнева Настя</h1>
+            <div class="age-highlight">
+                <span>🎂 15 лет</span>
+                <span class="school">🎓 KiberOne — школа программирования</span>
+            </div>
+            <div class="desc">
+                Создаю сайты и интерактивные приложения с душой. Учусь полный стек: от верстки до баз данных. 
+                Люблю экспериментировать с дизайном и решать логические задачи. В KiberOne прокачиваю навыки 
+                разработки и командной работы.
+            </div>
+        </div>
+        <div class="hero-avatar">
+            <div class="avatar-circle">
+                <div class="avatar-initials">НШ</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Список проектов -->
+    <div class="section-title">
+        📁 Мои проекты <span>портфолио</span>
+    </div>
+
+    <div class="projects-grid" id="projectsContainer">
+        <!-- проекты будут отрисованы через JS, но для надежности дублируем структуру через js -->
+    </div>
+
+    <!-- Дополнительная информация обо мне + навыки -->
+    <div class="about-more fade-up">
+        <h3>✨ чуть больше обо мне</h3>
+        <div class="skills">
+            <span class="skill">HTML5 & CSS3</span>
+            <span class="skill">JavaScript (ES6+)</span>
+            <span class="skill">React.js (базовый)</span>
+            <span class="skill">Python / Flask</span>
+            <span class="skill">Git & Github</span>
+            <span class="skill">Figma</span>
+            <span class="skill">Адаптивная верстка</span>
+        </div>
+        <p>🎯 В планах: изучить TypeScript, создать собственный pet-проект с ИИ, участвовать в хакатонах. 
+        В свободное время решаю задачи на Codewars, читаю про UX/UI и веду небольшой блог в Telegram про веб-разработку.</p>
+        <div class="quote">
+            💬 «Код — это инструмент, а творчество — двигатель. В KiberOne я нашла единомышленников и вдохновение, чтобы расти каждый день»
+        </div>
+    </div>
+    <footer>
+        © 2025 Штурнева Настя — портфолио ученицы KiberOne. Все проекты учебные и реальные.
+    </footer>
+</div>
+
+<script>
+    // данные проектов (список)
+    const projectsData = [
+        {
+            id: 1,
+            title: "Кибер-визитка",
+            tech: "HTML, CSS, JS",
+            description: "Интерактивная визитка-лендинг с анимацией и модальным окном. Первая серьезная работа в KiberOne.",
+            icon: "🧩",
+            demoLink: "#",
+            codeLink: "#"
+        },
+        {
+            id: 2,
+            title: "Todo list на ваниле",
+            tech: "JavaScript, LocalStorage",
+            description: "Менеджер задач с возможностью добавлять, удалять, отмечать выполненные. Данные сохраняются в браузере.",
+            icon: "✅",
+            demoLink: "#",
+            codeLink: "#"
+        },
+        {
+            id: 3,
+            title: "Калькулятор ИИ-идей",
+            tech: "React + хуки",
+            description: "Прототип генератора случайных идей для проектов с забавными описаниями. Работа с состоянием.",
+            icon: "🤖",
+            demoLink: "#",
+            codeLink: "#"
+        },
+        {
+            id: 4,
+            title: "Погодный виджет",
+            tech: "API, Fetch, Async",
+            description: "Приложение с определением погоды по городу через OpenWeatherMap, динамическая смена иконок.",
+            icon: "⛅",
+            demoLink: "#",
+            codeLink: "#"
+        },
+        {
+            id: 5,
+            title: "Сайт-портфолио (этот)",
+            tech: "HTML/CSS/JS, Grid",
+            description: "Мое персональное портфолио, где собраны проекты. Адаптивный дизайн и современный UI.",
+            icon: "🎨",
+            demoLink: "#",
+            codeLink: "#"
+        },
+        {
+            id: 6,
+            title: "Mini Quiz: KiberOne",
+            tech: "JS, DOM Events",
+            description: "Викторина из 5 вопросов об IT и школе KiberOne, подсчет очков и отображение результата.",
+            icon: "📚",
+            demoLink: "#",
+            codeLink: "#"
+        }
+    ];
+
+    // Функция для рендера проектов в сетку
+    function renderProjects() {
+        const container = document.getElementById('projectsContainer');
+        if (!container) return;
+
+        container.innerHTML = ''; // очищаем
+
+        projectsData.forEach(project => {
+            const card = document.createElement('div');
+            card.className = 'project-card fade-up';
+            // анимация появляется плавно, но добавим небольшой стиль задержки через style?
+            card.style.animationDelay = `${Math.random() * 0.1}s`; 
+            
+            // внутреннее наполнение
+            card.innerHTML = `
+                <div class="project-icon">${project.icon}</div>
+                <div class="project-title">${escapeHtml(project.title)}</div>
+                <div class="project-tech">${escapeHtml(project.tech)}</div>
+                <div class="project-desc">${escapeHtml(project.description)}</div>
+                <div style="display: flex; gap: 1rem; margin-top: 12px;">
+                    <a href="${project.demoLink}" class="project-link" target="_blank">🔗 Демо →</a>
+                    <a href="${project.codeLink}" class="project-link" target="_blank">📂 Код →</a>
+                </div>
+            `;
+
+            // Добавим событие клика по карточке (показывать больше информации в alert для интерактива)
+            card.addEventListener('click', (e) => {
+                // если клик был именно по ссылке — не перебиваем
+                if(e.target.tagName === 'A' || e.target.closest('a')) return;
+                alert(`✨ Проект: ${project.title}\nТехнологии: ${project.tech}\nОписание: ${project.description}\nСпасибо за интерес! 🚀`);
+            });
+            container.appendChild(card);
+        });
+    }
+
+    // маленькая защита от XSS
+    function escapeHtml(str) {
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
+            return c;
+        });
+    }
+
+    // Дополнительный JS: плавный скролл к секциям, счетчик посещений / эффекты
+    // Небольшая интерактивная подпись в консоль (дружелюбно)
+    console.log("%c✨ Портфолио Насти Штурневой | KiberOne student ✨", "color: #6c5ce7; font-size: 16px; font-weight: bold;");
+    console.log("Проекты загружены, кликни на карточку для быстрого просмотра описания :)");
+
+    // Добавим возможность фильтрации проектов по технологии? (необязательно, но сделаем маленький ui с кнопкой - круто)
+    // Для дополнительного wow-эффекта добавим простую кнопку "Показать навыки" или выделить проекты.
+    // Но по заданию просто портфолио + описание + проекты. Сделаем еще динамическое приветствие.
+    
+    // Добавим в хедер небольшую рандомную цитату при загрузке? но можно и так.
+    // Создадим элемент поверх? Но для красоты: динамически обновим заголовок проектов или добавим переключатель "сортировка"
+    // Реализуем простой выпадающий фильтр (не обязательно, но стильно и покажет JS).
+    
+    // Вставлю над сеткой небольшие кнопки для фильтрации проектов (по технологии), это улучшит пользовательский опыт.
+    // Не противоречит ТЗ, только делает портфолио интереснее.
+    const sectionTitleDiv = document.querySelector('.section-title');
+    const filterPanel = document.createElement('div');
+    filterPanel.style.marginBottom = '1.5rem';
+    filterPanel.style.display = 'flex';
+    filterPanel.style.flexWrap = 'wrap';
+    filterPanel.style.gap = '10px';
+    filterPanel.style.alignItems = 'center';
+    filterPanel.style.justifyContent = 'flex-start';
+    
+    const filterLabel = document.createElement('span');
+    filterLabel.innerText = '🔍 Фильтр по технологиям:';
+    filterLabel.style.fontWeight = '500';
+    filterLabel.style.fontSize = '0.85rem';
+    filterLabel.style.color = '#3b4466';
+    
+    const allBtn = document.createElement('button');
+    allBtn.innerText = 'Все';
+    allBtn.className = 'filter-btn';
+    allBtn.style.background = '#6c5ce7';
+    allBtn.style.color = 'white';
+    allBtn.style.border = 'none';
+    allBtn.style.padding = '6px 16px';
+    allBtn.style.borderRadius = '40px';
+    allBtn.style.cursor = 'pointer';
+    allBtn.style.fontWeight = '500';
+    allBtn.style.fontSize = '0.8rem';
+    allBtn.style.transition = '0.2s';
+    
+    const htmlBtn = document.createElement('button');
+    htmlBtn.innerText = 'HTML/CSS';
+    htmlBtn.className = 'filter-btn';
+    htmlBtn.style.background = '#eef2ff';
+    htmlBtn.style.color = '#2d3a6e';
+    htmlBtn.style.border = '1px solid #cdd9ff';
+    htmlBtn.style.padding = '6px 16px';
+    htmlBtn.style.borderRadius = '40px';
+    htmlBtn.style.cursor = 'pointer';
+    htmlBtn.style.fontWeight = '500';
+    
+    const jsBtn = document.createElement('button');
+    jsBtn.innerText = 'JavaScript';
+    jsBtn.style.background = '#eef2ff';
+    jsBtn.style.color = '#2d3a6e';
+    jsBtn.style.border = '1px solid #cdd9ff';
+    jsBtn.style.padding = '6px 16px';
+    jsBtn.style.borderRadius = '40px';
+    jsBtn.style.cursor = 'pointer';
+    jsBtn.style.fontWeight = '500';
+    
+    const reactBtn = document.createElement('button');
+    reactBtn.innerText = 'React / API';
+    reactBtn.style.background = '#eef2ff';
+    reactBtn.style.color = '#2d3a6e';
+    reactBtn.style.border = '1px solid #cdd9ff';
+    reactBtn.style.padding = '6px 16px';
+    reactBtn.style.borderRadius = '40px';
+    reactBtn.style.cursor = 'pointer';
+    reactBtn.style.fontWeight = '500';
+    
+    const resetStyle = (btns) => {
+        btns.forEach(btn => {
+            if(btn.style) {
+                btn.style.background = '#eef2ff';
+                btn.style.color = '#2d3a6e';
+                btn.style.border = '1px solid #cdd9ff';
+            }
+        });
+    };
+    
+    const highlightActive = (activeBtn) => {
+        activeBtn.style.background = '#6c5ce7';
+        activeBtn.style.color = 'white';
+        activeBtn.style.border = 'none';
+    };
+    
+    function filterProjectsByTech(filterType) {
+        const cards = document.querySelectorAll('.project-card');
+        const projectsArray = Array.from(cards);
+        projectsArray.forEach((card, idx) => {
+            const techSpan = card.querySelector('.project-tech');
+            if(!techSpan) return;
+            const techText = techSpan.innerText.toLowerCase();
+            let match = false;
+            if(filterType === 'all') match = true;
+            else if(filterType === 'html/css' && (techText.includes('html') || techText.includes('css'))) match = true;
+            else if(filterType === 'javascript' && (techText.includes('js') || techText.includes('javascript') || techText.includes('localstorage'))) match = true;
+            else if(filterType === 'react/api' && (techText.includes('react') || techText.includes('api') || techText.includes('fetch'))) match = true;
+            else match = false;
+            
+            card.style.display = match ? 'block' : 'none';
+        });
+    }
+    
+    allBtn.addEventListener('click', () => {
+        resetStyle([allBtn, htmlBtn, jsBtn, reactBtn]);
+        highlightActive(allBtn);
+        filterProjectsByTech('all');
+    });
+    htmlBtn.addEventListener('click', () => {
+        resetStyle([allBtn, htmlBtn, jsBtn, reactBtn]);
+        highlightActive(htmlBtn);
+        filterProjectsByTech('html/css');
+    });
+    jsBtn.addEventListener('click', () => {
+        resetStyle([allBtn, htmlBtn, jsBtn, reactBtn]);
+        highlightActive(jsBtn);
+        filterProjectsByTech('javascript');
+    });
+    reactBtn.addEventListener('click', () => {
+        resetStyle([allBtn, htmlBtn, jsBtn, reactBtn]);
+        highlightActive(reactBtn);
+        filterProjectsByTech('react/api');
+    });
+    
+    filterPanel.appendChild(filterLabel);
+    filterPanel.appendChild(allBtn);
+    filterPanel.appendChild(htmlBtn);
+    filterPanel.appendChild(jsBtn);
+    filterPanel.appendChild(reactBtn);
+    
+    // Вставим панель фильтра после заголовка секции и перед сеткой проектов
+    const projectsContainer = document.getElementById('projectsContainer');
+    if(sectionTitleDiv && projectsContainer) {
+        sectionTitleDiv.insertAdjacentElement('afterend', filterPanel);
+    }
+    
+    // Дополнительно эффект на аватарку: меняем текст при клике? просто забава
+    const avatarDiv = document.querySelector('.avatar-circle');
+    if(avatarDiv) {
+        avatarDiv.addEventListener('click', () => {
+            const initialsSpan = document.querySelector('.avatar-initials');
+            if(initialsSpan) {
+                if(initialsSpan.innerText === 'НШ') {
+                    initialsSpan.innerText = '❤️';
+                    setTimeout(() => { initialsSpan.innerText = 'НШ'; }, 1200);
+                } else {
+                    initialsSpan.innerText = 'Настя';
+                    setTimeout(() => { initialsSpan.innerText = 'НШ'; }, 1000);
+                }
+            }
+        });
+    }
+    
+    // Небольшое приветствие в духе "15 лет, полна энергии"
+    const heroDesc = document.querySelector('.desc');
+    if(heroDesc && !heroDesc.innerHTML.includes('KiberOne')) {
+        // уже есть
+    }
+    
+    // Вызов рендера
+    renderProjects();
+    
+    // после рендера фильтр должен корректно работать для уже созданных карточек, но сначала все карточки видны, задаем фильтр "all" активным по умолчанию.
+    setTimeout(() => {
+        highlightActive(allBtn);
+        filterProjectsByTech('all');
+    }, 30);
+    
+    // Добавим интерактивную модалку приветствия если хотим. Но и так хорошо.
+    // Создадим приветственный toast с информацией о портфолио (можно ненавязчиво)
+    const toast = document.createElement('div');
+    toast.innerText = 'Привет! Я Настя 👋 Кликай на проекты для деталей!';
+    toast.style.position = 'fixed';
+    toast.style.bottom = '20px';
+    toast.style.right = '20px';
+    toast.style.backgroundColor = '#1e293b';
+    toast.style.color = '#f1f5f9';
+    toast.style.padding = '10px 20px';
+    toast.style.borderRadius = '60px';
+    toast.style.fontSize = '0.85rem';
+    toast.style.fontWeight = '500';
+    toast.style.boxShadow = '0 4px 15px rgba(0,0,0,0.2)';
+    toast.style.zIndex = '999';
+    toast.style.opacity = '0';
+    toast.style.transition = 'opacity 0.4s';
+    toast.style.pointerEvents = 'none';
+    document.body.appendChild(toast);
+    setTimeout(() => {
+        toast.style.opacity = '1';
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            setTimeout(() => toast.remove(), 600);
+        }, 2800);
+    }, 500);
+</script>
+</body>
+</html>
